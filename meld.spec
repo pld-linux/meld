@@ -5,7 +5,7 @@ Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
 Version:	0.9.0
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Text
 Source0:	http://dl.sf.net/meld/%{name}-%{version}.tgz
