@@ -1,17 +1,16 @@
 # TODO: make pl translation, commit it to gnome repository
 #       and attch pl.patch here ;)
-
+#
 %include	/usr/lib/rpm/macros.python
 Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
 Version:	0.9.2.1
-Release:	0.9
+Release:	1
 License:	GPL
 Group:		Applications/Text
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.9/%{name}-%{version}.tar.bz2
 # Source0-md5:	3be9d2046c617667d5eb65ee5ce66b67
-#Patch0:		%{name}-desktop.patch
 URL:		http://meld.sf.net/
 BuildRequires:	python-pyorbit-devel >= 1.99.7
 BuildRequires:	python-gnome-devel >= 1.99.18
@@ -44,40 +43,30 @@ zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
 
 %prep
 %setup -q
-#%patch0 -p1
 
 %build
-%{__make}
+%{__make} \
+	prefix=/usr \
+	libdir=%{py_sitedir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} \
-    prefix=$RPM_BUILD_ROOT/usr install
+%{__make} install \
+	prefix=$RPM_BUILD_ROOT/usr \
+	libdir=$RPM_BUILD_ROOT%{py_sitedir}
 
-#install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/glade2/pixmaps,%{_datadir}/%{name}/manual,%{_desktopdir},%{_pixmapsdir}}
-#
-#install %{name} *.py $RPM_BUILD_ROOT%{_datadir}/%{name}
-#install glade2/*.glade* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2
-#install glade2/pixmaps/* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2/pixmaps
-#install glade2/pixmaps/icon.png $RPM_BUILD_ROOT%{_pixmapsdir}/meld.png
-#install manual/*.html $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
-#install manual/*.css $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
-#install %{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
-
-#echo "exec %{_datadir}/%{name}/%{name} \$*" >$RPM_BUILD_ROOT%{_bindir}/%{name}
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS TODO.txt changelog
+%doc AUTHORS TODO.txt changelog manual/{manual.html,stylesheet.css}
 %attr(755,root,root) %{_bindir}/%{name}
-%dir %{_datadir}/%{name}
-%attr(755,root,root) %{_datadir}/%{name}/%{name}
-%{_datadir}/%{name}/*.py
-%{_datadir}/%{name}/glade2
-%{_datadir}/%{name}/manual
+%dir %{py_sitedir}/%{name}
+%{py_sitedir}/%{name}/*.py[co]
+%{_datadir}/%{name}
 %{_desktopdir}/*
 %{_pixmapsdir}/*
