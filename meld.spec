@@ -3,7 +3,7 @@ Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
 Version:	0.9.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Text
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tgz
@@ -17,6 +17,7 @@ BuildRequires:	rpm-pythonprov
 Requires:	python-pygtk >= 1.99.18
 Requires:	python-gnome >= 1.99.18
 Requires:	python-pyorbit >= 1.99.18
+Requires:	python-pygtk-glade >= 1.99.18
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
