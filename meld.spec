@@ -5,10 +5,10 @@ Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
 Version:	0.9.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.9/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/meld/0.9/%{name}-%{version}.tar.bz2
 # Source0-md5:	dc86bf6f5ed1887da6a28ac1d91eb78d
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-omf.patch
@@ -18,6 +18,7 @@ BuildRequires:	python-gnome-devel >= 1.99.18
 BuildRequires:	python-pygtk-devel >= 1.99.18
 BuildRequires:	scrollkeeper
 Requires(post,postun):	scrollkeeper
+Requires(post,postun):	desktop-file-utils
 %pyrequires_eq	python-libs
 Requires:	python-pygtk-gtk >= 1.99.18
 Requires:	python-gnome >= 1.99.18
@@ -62,21 +63,22 @@ rm -rf $RPM_BUILD_ROOT
 	prefix=%{_prefix} \
 	libdir=%{py_sitedir}
 
+rm -r $RPM_BUILD_ROOT%{_datadir}/application-registry
+
 %find_lang %{name} --with-gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-umask 022
-/usr/bin/scrollkeeper-update
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
+/usr/bin/scrollkeeper-update -q
+/usr/bin/update-desktop-database
 
 %postun
-umask 022
-/usr/bin/scrollkeeper-update
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1
-
+if [ $1 = 0]; then
+	/usr/bin/scrollkeeper-update -q
+	/usr/bin/update-desktop-database
+fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -85,7 +87,6 @@ umask 022
 %dir %{py_sitedir}/%{name}
 %{py_sitedir}/%{name}/*.py[co]
 %{_datadir}/%{name}
-%{_datadir}/application-registry/*
 %{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_omf_dest_dir}/%{name}
