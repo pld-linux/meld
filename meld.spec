@@ -2,7 +2,7 @@ Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
 Version:	0.9.0
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Text
 Source0:	http://dl.sf.net/meld/%{name}-%{version}.tgz
@@ -47,7 +47,7 @@ install manual/*.html $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
 install manual/*.css $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
 install %{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
 
-echo "exec %{_datadir}/%{name}/%{name}" >$RPM_BUILD_ROOT%{_bindir}/%{name}
+echo "exec %{_datadir}/%{name}/%{name} \$*" >$RPM_BUILD_ROOT%{_bindir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
