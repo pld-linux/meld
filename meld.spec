@@ -2,7 +2,7 @@ Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
 Version:	0.9.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Text
 Source0:	http://dl.sf.net/meld/%{name}-%{version}.tgz
@@ -37,12 +37,14 @@ zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/meld/glade2/pixmaps,%{_desktopdir},%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/glade2/pixmaps,%{_datadir}/%{name}/manual,%{_desktopdir},%{_pixmapsdir}}
 
 install %{name} *.py $RPM_BUILD_ROOT%{_datadir}/%{name}
 install glade2/*.glade* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2
 install glade2/pixmaps/* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2/pixmaps
 install glade2/pixmaps/icon.png $RPM_BUILD_ROOT%{_pixmapsdir}/meld.png
+install manual/*.html $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
+install manual/*.css $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
 install %{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
 
 echo "exec %{_datadir}/%{name}/%{name}" >$RPM_BUILD_ROOT%{_bindir}/%{name}
@@ -58,5 +60,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{name}/%{name}
 %{_datadir}/%{name}/*.py
 %{_datadir}/%{name}/glade2
+%{_datadir}/%{name}/manual
 %{_desktopdir}/*
 %{_pixmapsdir}/*
