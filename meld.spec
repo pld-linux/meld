@@ -16,6 +16,7 @@ BuildRequires:	python-pyorbit-devel >= 1.99.7
 BuildRequires:	python-gnome-devel >= 1.99.18
 BuildRequires:	python-pygtk-devel >= 1.99.18
 BuildRequires:	rpm-pythonprov
+%pyrequires_eq	python-libs
 Requires:	python-pygtk-gtk >= 1.99.18
 Requires:	python-gnome >= 1.99.18
 Requires:	python-gnome-ui >= 1.99.18
