@@ -1,3 +1,6 @@
+
+%include        /usr/lib/rpm/macros.python
+
 Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
@@ -12,6 +15,7 @@ URL:		http://meld.sf.net/
 BuildRequires:	python-pyorbit-devel >= 1.99.7
 BuildRequires:	python-gnome-devel >= 1.99.18
 BuildRequires:	python-pygtk-devel >= 1.99.18
+BuildRequires:  rpm-pythonprov
 Requires:	python-pygtk >= 1.99.18
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
