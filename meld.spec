@@ -16,7 +16,6 @@ URL:		http://meld.sf.net/
 BuildRequires:	python-pyorbit-devel >= 1.99.7
 BuildRequires:	python-gnome-devel >= 1.99.18
 BuildRequires:	python-pygtk-devel >= 1.99.18
-BuildRequires:	rpm-pythonprov
 BuildRequires:	scrollkeeper
 Requires(post,postun):	scrollkeeper
 %pyrequires_eq	python-libs
