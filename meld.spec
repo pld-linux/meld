@@ -1,14 +1,17 @@
+# TODO: make pl translation, commit it to gnome repository
+#       and attch pl.patch here ;)
+
 %include	/usr/lib/rpm/macros.python
 Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
-Version:	0.9.1
-Release:	3
+Version:	0.9.2.1
+Release:	0.9
 License:	GPL
 Group:		Applications/Text
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tgz
-# Source0-md5:	1dfd1205c405bc263fc49ea1d92d47bf
-Patch0:		%{name}-desktop.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.9/%{name}-%{version}.tar.bz2
+# Source0-md5:	3be9d2046c617667d5eb65ee5ce66b67
+#Patch0:		%{name}-desktop.patch
 URL:		http://meld.sf.net/
 BuildRequires:	python-pyorbit-devel >= 1.99.7
 BuildRequires:	python-gnome-devel >= 1.99.18
@@ -41,21 +44,28 @@ zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
+
+%build
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/glade2/pixmaps,%{_datadir}/%{name}/manual,%{_desktopdir},%{_pixmapsdir}}
 
-install %{name} *.py $RPM_BUILD_ROOT%{_datadir}/%{name}
-install glade2/*.glade* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2
-install glade2/pixmaps/* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2/pixmaps
-install glade2/pixmaps/icon.png $RPM_BUILD_ROOT%{_pixmapsdir}/meld.png
-install manual/*.html $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
-install manual/*.css $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
-install %{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
+%{__make} \
+    prefix=$RPM_BUILD_ROOT/usr install
 
-echo "exec %{_datadir}/%{name}/%{name} \$*" >$RPM_BUILD_ROOT%{_bindir}/%{name}
+#install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/glade2/pixmaps,%{_datadir}/%{name}/manual,%{_desktopdir},%{_pixmapsdir}}
+#
+#install %{name} *.py $RPM_BUILD_ROOT%{_datadir}/%{name}
+#install glade2/*.glade* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2
+#install glade2/pixmaps/* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2/pixmaps
+#install glade2/pixmaps/icon.png $RPM_BUILD_ROOT%{_pixmapsdir}/meld.png
+#install manual/*.html $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
+#install manual/*.css $RPM_BUILD_ROOT%{_datadir}/%{name}/manual
+#install %{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
+
+#echo "exec %{_datadir}/%{name}/%{name} \$*" >$RPM_BUILD_ROOT%{_bindir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
