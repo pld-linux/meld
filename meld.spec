@@ -1,5 +1,5 @@
 
-%include        /usr/lib/rpm/macros.python
+%include	/usr/lib/rpm/macros.python
 
 Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
@@ -15,7 +15,7 @@ URL:		http://meld.sf.net/
 BuildRequires:	python-pyorbit-devel >= 1.99.7
 BuildRequires:	python-gnome-devel >= 1.99.18
 BuildRequires:	python-pygtk-devel >= 1.99.18
-BuildRequires:  rpm-pythonprov
+BuildRequires:	rpm-pythonprov
 Requires:	python-pygtk >= 1.99.18
 Requires:	python-gnome >= 1.99.18
 Requires:	python-pyorbit >= 1.99.18
@@ -40,7 +40,7 @@ zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
