@@ -1,4 +1,5 @@
 Summary:	Visual diff and merge tool
+Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
 Version:	0.8.5
 Release:	1
@@ -20,18 +21,25 @@ allows merges. The margins show location of changes for easy
 navigation, and it also features a tabbed interface that allows you to
 open many diffs at once.
 
+%description -l pl
+Meld to przeznaczone dla GNOME 2 wizualne narzêdzie do ogl±dania i
+w³±czania zmian (w formacie diff). Integruje siê szczególnie dobrze z
+CVS. Przegl±darka ró¿nic pozwala modyfikowaæ pliki w miejscu
+(dynamicznie uaktualniaæ), a ¶rodkowa kolumna pokazuje szczegó³owe
+zmiany i pozwala na w³±czanie. Na marginesach jest pokazane po³o¿enie
+zmian w celu ³atwej nawigacji. Jest dostêpny tak¿e interfejs z
+zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
+
 %prep
 %setup -q
-
-%build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/meld/glade2/pixmaps}
 
-install %{name} *.py $RPM_BUILD_ROOT%{_datadir}/%{name}/
-install glade2/*.glade* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2/
-install glade2/pixmaps/* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2/pixmaps/
+install %{name} *.py $RPM_BUILD_ROOT%{_datadir}/%{name}
+install glade2/*.glade* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2
+install glade2/pixmaps/* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2/pixmaps
 
 echo "exec %{_datadir}/%{name}/%{name}" >$RPM_BUILD_ROOT%{_bindir}/%{name}
 
