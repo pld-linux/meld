@@ -2,11 +2,12 @@ Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
 Version:	0.9.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Text
 Source0:	http://dl.sf.net/meld/%{name}-%{version}.tgz
 # Source0-md5:	ade97f490ff61f2a5b85a3cc6d885232
+Patch0:		%{name}-desktop.patch
 URL:		http://meld.sf.net/
 BuildRequires:	python-pyorbit-devel >= 1.99.7
 BuildRequires:	python-gnome-devel >= 1.99.18
@@ -32,14 +33,17 @@ zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
 
 %prep
 %setup -q
+%patch -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/meld/glade2/pixmaps}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/meld/glade2/pixmaps,%{_desktopdir},%{_pixmapsdir}}
 
 install %{name} *.py $RPM_BUILD_ROOT%{_datadir}/%{name}
 install glade2/*.glade* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2
 install glade2/pixmaps/* $RPM_BUILD_ROOT%{_datadir}/%{name}/glade2/pixmaps
+install glade2/pixmaps/icon.png $RPM_BUILD_ROOT%{_pixmapsdir}/meld.png
+install %{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
 
 echo "exec %{_datadir}/%{name}/%{name}" >$RPM_BUILD_ROOT%{_bindir}/%{name}
 
@@ -54,3 +58,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{name}/%{name}
 %{_datadir}/%{name}/*.py
 %{_datadir}/%{name}/glade2
+%{_desktopdir}/*
+%{_pixmapsdir}/*
