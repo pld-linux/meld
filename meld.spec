@@ -4,18 +4,21 @@
 Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
-Version:	0.9.4.1
-Release:	5
+Version:	0.9.5
+Release:	1
 License:	GPL
 Group:		Applications/Text
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.9/%{name}-%{version}.tar.bz2
-# Source0-md5:	cd5f02e084529c581ce52a22647ca4dc
+# Source0-md5:	dc86bf6f5ed1887da6a28ac1d91eb78d
 Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-omf.patch
 URL:		http://meld.sf.net/
 BuildRequires:	python-pyorbit-devel >= 1.99.7
 BuildRequires:	python-gnome-devel >= 1.99.18
 BuildRequires:	python-pygtk-devel >= 1.99.18
 BuildRequires:	rpm-pythonprov
+BuildRequires:	scrollkeeper
+Requires(post,postun):	scrollkeeper
 %pyrequires_eq	python-libs
 Requires:	python-pygtk-gtk >= 1.99.18
 Requires:	python-gnome >= 1.99.18
@@ -45,6 +48,7 @@ zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} \
@@ -55,26 +59,29 @@ zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	prefix=$RPM_BUILD_ROOT/usr \
-	libdir=$RPM_BUILD_ROOT%{py_sitedir}
+	DESTDIR=$RPM_BUILD_ROOT \
+	prefix=%{_prefix} \
+	libdir=%{py_sitedir}
 
-%find_lang %{name}
+%find_lang %{name} --with-gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 umask 022
+/usr/bin/scrollkeeper-update
 [ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
 
 %postun
 umask 022
+/usr/bin/scrollkeeper-update
 [ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1
 
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS TODO.txt changelog manual/{manual.html,stylesheet.css}
+%doc AUTHORS changelog
 %attr(755,root,root) %{_bindir}/%{name}
 %dir %{py_sitedir}/%{name}
 %{py_sitedir}/%{name}/*.py[co]
@@ -82,3 +89,4 @@ umask 022
 %{_datadir}/application-registry/*
 %{_desktopdir}/*
 %{_pixmapsdir}/*
+%{_omf_dest_dir}/%{name}
