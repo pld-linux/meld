@@ -1,7 +1,7 @@
 diff -urN meld-0.9.4.1.orig/meld.desktop.in meld-0.9.4.1/meld.desktop.in
---- meld-0.9.4.1.orig/meld.desktop.in	2004-11-16 23:26:59.226328472 +0100
-+++ meld-0.9.4.1/meld.desktop.in	2004-11-16 23:34:32.265456056 +0100
-@@ -5,8 +5,8 @@
+--- meld.orig/meld.desktop.in	2004-02-19 23:47:40.000000000 +0100
++++ meld/meld.desktop.in.new	2004-11-17 13:53:02.123358056 +0100
+@@ -5,8 +5,9 @@
  Exec=meld
  Terminal=false
  Type=Application
@@ -9,6 +9,7 @@ diff -urN meld-0.9.4.1.orig/meld.desktop.in meld-0.9.4.1/meld.desktop.in
 -Categories=GNOME;Application;Development;
 +Icon=meld.png
 +Categories=GTK;GNOME;Utility;
++MimeType=text/x-patch;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=meld
  X-GNOME-Bugzilla-Component=general
