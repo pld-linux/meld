@@ -1,7 +1,6 @@
 # TODO: make pl translation, commit it to gnome repository
 #       and attch pl.patch here ;)
 #
-%include	/usr/lib/rpm/macros.python
 Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
