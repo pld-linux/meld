@@ -1,6 +1,4 @@
-
 %include	/usr/lib/rpm/macros.python
-
 Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
@@ -8,7 +6,7 @@ Version:	0.9.1
 Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://dl.sf.net/meld/%{name}-%{version}.tgz
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tgz
 # Source0-md5:	1dfd1205c405bc263fc49ea1d92d47bf
 Patch0:		%{name}-desktop.patch
 URL:		http://meld.sf.net/
