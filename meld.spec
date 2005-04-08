@@ -16,9 +16,10 @@ URL:		http://meld.sf.net/
 BuildRequires:	python-pyorbit-devel >= 1.99.7
 BuildRequires:	python-gnome-devel >= 1.99.18
 BuildRequires:	python-pygtk-devel >= 1.99.18
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
-Requires(post,postun):	scrollkeeper
 Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	scrollkeeper
 %pyrequires_eq	python-libs
 Requires:	python-pygtk-gtk >= 1.99.18
 Requires:	python-gnome >= 1.99.18
@@ -71,16 +72,12 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/application-registry
 rm -rf $RPM_BUILD_ROOT
 
 %post
-umask 022
-/usr/bin/scrollkeeper-update -q
-/usr/bin/update-desktop-database
+%scrollkeeper_update_post
+%update_desktop_database_post
 
 %postun
-if [ $1 = 0]; then
-	umask 022
-	/usr/bin/scrollkeeper-update -q
-	/usr/bin/update-desktop-database
-fi
+%scrollkeeper_update_postun
+%update_desktop_database_postun
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
