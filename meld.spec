@@ -5,7 +5,7 @@ Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
 Version:	0.9.5
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Text
 Source0:	http://ftp.gnome.org/pub/gnome/sources/meld/0.9/%{name}-%{version}.tar.bz2
@@ -13,20 +13,20 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/meld/0.9/%{name}-%{version}.tar.
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-omf.patch
 URL:		http://meld.sf.net/
-BuildRequires:	python-pyorbit-devel >= 1.99.7
-BuildRequires:	python-gnome-devel >= 1.99.18
-BuildRequires:	python-pygtk-devel >= 1.99.18
+BuildRequires:	python-pyorbit-devel >= 2.0.1
+BuildRequires:	python-gnome-devel >= 2.10.0
+BuildRequires:	python-pygtk-devel >= 2:2.6.1
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	scrollkeeper
 %pyrequires_eq	python-libs
-Requires:	python-pygtk-gtk >= 1.99.18
-Requires:	python-gnome >= 1.99.18
-Requires:	python-gnome-ui >= 1.99.18
-Requires:	python-gnome-gconf >= 1.99.18
-Requires:	python-pyorbit >= 1.99.18
-Requires:	python-pygtk-glade >= 1.99.18
+Requires:	python-pygtk-gtk >= 2:2.6.1
+Requires:	python-gnome >= 2.10.0
+Requires:	python-gnome-ui >= 2.10.0
+Requires:	python-gnome-gconf >= 2.10.0
+Requires:	python-pyorbit >= 2.0.1
+Requires:	python-pygtk-glade >= 2:2.6.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
