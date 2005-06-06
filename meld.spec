@@ -12,6 +12,7 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/meld/0.9/%{name}-%{version}.tar.
 # Source0-md5:	73419987b125c0cfbb1f04cfe454a8e5
 Patch0:		%{name}-desktop.patch
 URL:		http://meld.sf.net/
+BuildRequires:	gettext-devel
 BuildRequires:	python-pyorbit-devel >= 2.0.1
 BuildRequires:	python-gnome-devel >= 2.10.0
 BuildRequires:	python-pygtk-devel >= 2:2.6.1
