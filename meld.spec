@@ -4,14 +4,13 @@
 Summary:	Visual diff and merge tool
 Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
 Name:		meld
-Version:	1.0.0
+Version:	1.1.1
 Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/gnome/sources/meld/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	ccde817f0396d39e9e40f31a3a7611f6
+Source0:	http://ftp.gnome.org/pub/gnome/sources/meld/1.1/%{name}-%{version}.tar.bz2
+# Source0-md5:	8c5866a24d70fb26c1a50383774acc91
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-fr_po.patch
 URL:		http://meld.sf.net/
 BuildRequires:	gettext-devel
 BuildRequires:	python-pyorbit-devel >= 2.0.1
@@ -50,7 +49,6 @@ zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__make} \
@@ -87,6 +85,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/%{name}
 %dir %{py_sitedir}/%{name}
 %{py_sitedir}/%{name}/*.py[co]
+%dir %{py_sitedir}/%{name}/vc
+%{py_sitedir}/%{name}/vc/*.py*
 %{_datadir}/%{name}
 %{_desktopdir}/*
 %{_pixmapsdir}/*
