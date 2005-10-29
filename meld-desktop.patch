@@ -6,7 +6,7 @@ diff -urN meld-0.9.4.1.orig/meld.desktop.in meld-0.9.4.1/meld.desktop.in
  Type=Application
  Icon=meld
 -Categories=GNOME;Application;Development;
-+Categories=GTK;GNOME;Utility;
++Categories=GTK;GNOME;Development;
 +MimeType=text/x-patch;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=meld
