@@ -13,24 +13,24 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/meld/1.1/%{name}-%{version}.tar.
 Patch0:		%{name}-desktop.patch
 URL:		http://meld.sf.net/
 BuildRequires:	gettext-devel
-BuildRequires:	python-pyorbit-devel >= 2.0.1
 BuildRequires:	python-gnome-devel >= 2.10.0
 BuildRequires:	python-pygtk-devel >= 2:2.6.1
+BuildRequires:	python-pyorbit-devel >= 2.0.1
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	scrollkeeper
 %pyrequires_eq	python-libs
-Requires:	python-pygtk-gtk >= 2:2.6.1
 Requires:	python-gnome >= 2.10.0
-Requires:	python-gnome-ui >= 2.10.0
 Requires:	python-gnome-gconf >= 2.10.0
-Requires:	python-pyorbit >= 2.0.1
+Requires:	python-gnome-ui >= 2.10.0
 Requires:	python-pygtk-glade >= 2:2.6.1
+Requires:	python-pygtk-gtk >= 2:2.6.1
+Requires:	python-pyorbit >= 2.0.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Meld is a GNOME 2 visual diff and merge tool. It integrates especially
+Meld is a GNOME visual diff and merge tool. It integrates especially
 well with CVS. The diff viewer lets you edit files in place (diffs
 update dynamically), and a middle column shows detailed changes and
 allows merges. The margins show location of changes for easy
@@ -38,7 +38,7 @@ navigation, and it also features a tabbed interface that allows you to
 open many diffs at once.
 
 %description -l pl
-Meld to przeznaczone dla GNOME 2 wizualne narzêdzie do ogl±dania i
+Meld to przeznaczone dla GNOME wizualne narzêdzie do ogl±dania i
 w³±czania zmian (w formacie diff). Integruje siê szczególnie dobrze z
 CVS. Przegl±darka ró¿nic pozwala modyfikowaæ pliki w miejscu
 (dynamicznie uaktualniaæ), a ¶rodkowa kolumna pokazuje szczegó³owe
@@ -64,7 +64,8 @@ rm -rf $RPM_BUILD_ROOT
 	libdir=%{py_sitedir}
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/application-registry
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/%{name}/*.py
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/{%{name},%{name}/vc}/*.py
+
 
 %find_lang %{name} --with-gnome
 
@@ -86,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/%{name}
 %{py_sitedir}/%{name}/*.py[co]
 %dir %{py_sitedir}/%{name}/vc
-%{py_sitedir}/%{name}/vc/*.py*
+%{py_sitedir}/%{name}/vc/*.py[co]
 %{_datadir}/%{name}
 %{_desktopdir}/*
 %{_pixmapsdir}/*
