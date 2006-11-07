@@ -87,6 +87,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/%{name}/vc
 %{py_sitedir}/%{name}/vc/*.py[co]
 %{_datadir}/%{name}
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
 %{_omf_dest_dir}/%{name}
