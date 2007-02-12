@@ -2,7 +2,7 @@
 #       and attch pl.patch here ;)
 #
 Summary:	Visual diff and merge tool
-Summary(pl):	Wizualne narzêdzie do ogl±dania i w³±czania zmian (diff)
+Summary(pl.UTF-8):   Wizualne narzÄ™dzie do oglÄ…dania i wÅ‚Ä…czania zmian (diff)
 Name:		meld
 Version:	1.1.4
 Release:	4
@@ -35,14 +35,14 @@ allows merges. The margins show location of changes for easy
 navigation, and it also features a tabbed interface that allows you to
 open many diffs at once.
 
-%description -l pl
-Meld to przeznaczone dla GNOME wizualne narzêdzie do ogl±dania i
-w³±czania zmian (w formacie diff). Integruje siê szczególnie dobrze z
-CVS. Przegl±darka ró¿nic pozwala modyfikowaæ pliki w miejscu
-(dynamicznie uaktualniaæ), a ¶rodkowa kolumna pokazuje szczegó³owe
-zmiany i pozwala na w³±czanie. Na marginesach jest pokazane po³o¿enie
-zmian w celu ³atwej nawigacji. Jest dostêpny tak¿e interfejs z
-zak³adkami, pozwalaj±cy na otwieranie wielu plików diff naraz.
+%description -l pl.UTF-8
+Meld to przeznaczone dla GNOME wizualne narzÄ™dzie do oglÄ…dania i
+wÅ‚Ä…czania zmian (w formacie diff). Integruje siÄ™ szczegÃ³lnie dobrze z
+CVS. PrzeglÄ…darka rÃ³Å¼nic pozwala modyfikowaÄ‡ pliki w miejscu
+(dynamicznie uaktualniaÄ‡), a Å›rodkowa kolumna pokazuje szczegÃ³Å‚owe
+zmiany i pozwala na wÅ‚Ä…czanie. Na marginesach jest pokazane poÅ‚oÅ¼enie
+zmian w celu Å‚atwej nawigacji. Jest dostÄ™pny takÅ¼e interfejs z
+zakÅ‚adkami, pozwalajÄ…cy na otwieranie wielu plikÃ³w diff naraz.
 
 %prep
 %setup -q
