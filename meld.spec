@@ -2,7 +2,7 @@
 #       and attch pl.patch here ;)
 #
 Summary:	Visual diff and merge tool
-Summary(pl.UTF-8):   Wizualne narzędzie do oglądania i włączania zmian (diff)
+Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
 Version:	1.1.4
 Release:	4
