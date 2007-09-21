@@ -25,6 +25,7 @@ Requires:	python-gnome >= 2.15.1
 Requires:	python-gnome-ui >= 2.15.1
 Requires:	python-pygtk-glade >= 2:2.9.0
 Requires:	python-pyorbit >= 2.14.0
+Suggests:	python-gnome-desktop-gtksourceview
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
