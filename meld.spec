@@ -5,10 +5,10 @@ Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
 Version:	1.1.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/gnome/sources/meld/1.1/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.1/%{name}-%{version}.tar.bz2
 # Source0-md5:	a92e72a3b4392ee3e677720f9a75246f
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-GNUmakefile.patch
@@ -16,6 +16,8 @@ URL:		http://meld.sourceforge.net/
 BuildRequires:	gettext-devel
 BuildRequires:	python-gnome-devel >= 2.15.1
 BuildRequires:	python-pyorbit-devel >= 2.14.0
+# support for --with-omf in find_lang.sh
+BuildRequires:	rpm-build >= 4.4.9-10
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
 Requires(post,postun):	desktop-file-utils
@@ -26,6 +28,8 @@ Requires:	python-gnome-ui >= 2.15.1
 Requires:	python-pygtk-glade >= 2:2.9.0
 Requires:	python-pyorbit >= 2.14.0
 Suggests:	python-gnome-desktop-gtksourceview
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,6 +54,8 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %patch0 -p1
 %patch1 -p1
 
+mv -f po/sr\@{Latn,latin}.po
+
 %build
 # Nasty quickfix - some translations are broken for now
 rm -f po/{hu,ja,ru}.po
@@ -73,7 +79,7 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/application-registry
 
 %py_postclean
 
-%find_lang %{name} --with-gnome
+%find_lang %{name} --with-gnome --with-omf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -96,4 +102,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
-%{_omf_dest_dir}/%{name}
