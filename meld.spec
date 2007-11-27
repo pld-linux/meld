@@ -1,5 +1,5 @@
 # TODO: make pl translation, commit it to gnome repository
-#       and attch pl.patch here ;)
+#       and attach pl.patch here ;)
 #
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
@@ -16,8 +16,7 @@ URL:		http://meld.sourceforge.net/
 BuildRequires:	gettext-devel
 BuildRequires:	python-gnome-devel >= 2.15.1
 BuildRequires:	python-pyorbit-devel >= 2.14.0
-# support for --with-omf in find_lang.sh
-BuildRequires:	rpm-build >= 4.4.9-10
+BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
 Requires(post,postun):	desktop-file-utils
