@@ -12,6 +12,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.2/%{name}-%{version}.tar.
 # Source0-md5:	08e047ab4c8a8ae383674fcddde9fb87
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-GNUmakefile.patch
+Patch2:		%{name}-glob.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	gettext-devel
 BuildRequires:	python-gnome-devel >= 2.15.1
@@ -52,6 +53,7 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 mv -f po/sr\@{Latn,latin}.po
 
