@@ -1,0 +1,12 @@
+diff -ruN meld-1.2/vc/__init__.py meld-1.2./vc/__init__.py
+--- meld-1.2/vc/__init__.py	2005-10-20 00:36:18.000000000 +0200
++++ meld-1.2./vc/__init__.py	2008-07-24 20:30:34.685677280 +0200
+@@ -28,7 +28,7 @@
+ def load_plugins():
+     _vcdir = os.path.dirname(os.path.abspath(__file__))
+     ret = []
+-    for plugin in glob.glob("%s/[a-z]*.py" % _vcdir):
++    for plugin in glob.glob("%s/[a-z]*.pyc" % _vcdir):
+         modname = "vc.%s" % os.path.basename(plugin)[:-3]
+         ret.append( __import__(modname, globals(), locals(), "*") )
+     return ret
