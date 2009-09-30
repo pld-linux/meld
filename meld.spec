@@ -4,19 +4,21 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	1.2.1
+Version:	1.3.1
 Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	78f6084b14ee5334cf3578e62383b341
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	05885811cf0bccc051c3f44938ff54ed
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-GNUmakefile.patch
 Patch2:		%{name}-glob.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	gettext-devel
+BuildRequires:	intltool
 BuildRequires:	python-gnome-devel >= 2.15.1
 BuildRequires:	python-pyorbit-devel >= 2.14.0
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
@@ -63,7 +65,7 @@ cp -r help/C/figures help/fr/figures
 # Nasty quickfix - some translations are broken for now
 rm -f po/{hu,ja,ru}.po
 %{__make} \
-	prefix=/usr \
+prefix=%{_prefix} \
 	libdir=%{py_sitedir}
 
 %install
@@ -78,7 +80,6 @@ touch $RPM_BUILD_ROOT%{py_sitedir}/meld/__init__.py
 
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
-rm -r $RPM_BUILD_ROOT%{_datadir}/application-registry
 
 %py_postclean
 
@@ -97,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS changelog
+%doc AUTHORS
 %attr(755,root,root) %{_bindir}/%{name}
 %dir %{py_sitedir}/%{name}
 %{py_sitedir}/%{name}/*.py[co]
