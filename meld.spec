@@ -4,12 +4,12 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	1.3.1
-Release:	3
+Version:	1.4.0
+Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	05885811cf0bccc051c3f44938ff54ed
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.4/%{name}-%{version}.tar.bz2
+# Source0-md5:	b675ec2006c4452469cf501c51b2a689
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-GNUmakefile.patch
 Patch2:		%{name}-glob.patch
@@ -57,10 +57,6 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %patch1 -p1
 %patch2 -p1
 
-mv -f po/sr\@{Latn,latin}.po
-
-cp -r help/C/figures help/fr/figures
-
 %build
 # Nasty quickfix - some translations are broken for now
 rm -f po/{hu,ja,ru}.po
@@ -101,8 +97,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS
 %attr(755,root,root) %{_bindir}/%{name}
 %dir %{py_sitedir}/%{name}
+%dir %{py_sitedir}/%{name}/%{name}
 %{py_sitedir}/%{name}/*.py[co]
-%{py_sitedir}/%{name}/vc
+%{py_sitedir}/%{name}/%{name}/*
+%{_iconsdir}/hicolor/*
 %{_datadir}/%{name}
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*

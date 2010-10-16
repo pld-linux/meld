@@ -1,6 +1,6 @@
 diff -Nur meld-1.2.1.orig/meld.desktop.in meld-1.2.1.desktop/meld.desktop.in
---- meld-1.2.1.orig/meld.desktop.in	2008-11-15 03:39:56.000000000 -0700
-+++ meld-1.2.1.desktop/meld.desktop.in	2008-11-23 14:13:02.000000000 -0700
+--- meld-1.2.1.orig/data/meld.desktop.in	2008-11-15 03:39:56.000000000 -0700
++++ meld-1.2.1.desktop/data/meld.desktop.in	2008-11-23 14:13:02.000000000 -0700
 @@ -7,7 +7,8 @@
  Type=Application
  Icon=meld
@@ -11,42 +11,3 @@ diff -Nur meld-1.2.1.orig/meld.desktop.in meld-1.2.1.desktop/meld.desktop.in
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=meld
  X-GNOME-Bugzilla-Component=general
-diff -Nur meld-1.2.1.orig/meld.desktop.in.orig meld-1.2.1.desktop/meld.desktop.in.orig
---- meld-1.2.1.orig/meld.desktop.in.orig	1969-12-31 17:00:00.000000000 -0700
-+++ meld-1.2.1.desktop/meld.desktop.in.orig	2008-11-15 03:39:56.000000000 -0700
-@@ -0,0 +1,13 @@
-+[Desktop Entry]
-+Encoding=UTF-8
-+_Name=Meld Diff Viewer
-+_Comment=Compare and merge your files
-+Exec=meld
-+Terminal=false
-+Type=Application
-+Icon=meld
-+StartupNotify=true
-+Categories=GNOME;Application;Development;
-+X-GNOME-Bugzilla-Bugzilla=GNOME
-+X-GNOME-Bugzilla-Product=meld
-+X-GNOME-Bugzilla-Component=general
-diff -Nur meld-1.2.1.orig/meld.desktop.in.rej meld-1.2.1.desktop/meld.desktop.in.rej
---- meld-1.2.1.orig/meld.desktop.in.rej	1969-12-31 17:00:00.000000000 -0700
-+++ meld-1.2.1.desktop/meld.desktop.in.rej	2008-11-23 14:13:00.000000000 -0700
-@@ -0,0 +1,18 @@
-+***************
-+*** 6,12 ****
-+  Terminal=false
-+  Type=Application
-+  Icon=meld
-+- Categories=GNOME;Application;Development;
-+  X-GNOME-Bugzilla-Bugzilla=GNOME
-+  X-GNOME-Bugzilla-Product=meld
-+  X-GNOME-Bugzilla-Component=general
-+--- 6,13 ----
-+  Terminal=false
-+  Type=Application
-+  Icon=meld
-++ Categories=GTK;GNOME;Development;
-++ MimeType=text/x-patch;
-+  X-GNOME-Bugzilla-Bugzilla=GNOME
-+  X-GNOME-Bugzilla-Product=meld
-+  X-GNOME-Bugzilla-Component=general
