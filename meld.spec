@@ -4,32 +4,30 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	1.4.0
-Release:	2
+Version:	1.5.1
+Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	b675ec2006c4452469cf501c51b2a689
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.5/%{name}-%{version}.tar.bz2
+# Source0-md5:	387f24c936e2a433ac3dedd298008675
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-GNUmakefile.patch
 Patch2:		%{name}-glob.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	gettext-devel
 BuildRequires:	intltool
-BuildRequires:	python-gnome-devel >= 2.15.1
-BuildRequires:	python-pyorbit-devel >= 2.14.0
+BuildRequires:	python-modules >= 2.5
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
 Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	scrollkeeper
-%pyrequires_eq	python-libs
-Requires:	python-gnome >= 2.15.1
-Requires:	python-gnome-ui >= 2.15.1
-Requires:	python-pygtk-glade >= 2:2.9.0
-Requires:	python-pyorbit >= 2.14.0
-Suggests:	python-gnome-desktop-gtksourceview
+Requires:	hicolor-icon-theme
+Requires:	python-pygobject >= 2.16
+Requires:	python-pygtk-gtk >= 2.14
+Suggests:	python-gtksourceview2 >= 2.4
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -58,10 +56,8 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %patch2 -p1
 
 %build
-# Nasty quickfix - some translations are broken for now
-rm -f po/{hu,ja,ru}.po
 %{__make} \
-prefix=%{_prefix} \
+	prefix=%{_prefix} \
 	libdir=%{py_sitedir}
 
 %install
@@ -81,18 +77,18 @@ touch $RPM_BUILD_ROOT%{py_sitedir}/meld/__init__.py
 
 %find_lang %{name} --with-gnome --with-omf
 
-rm $RPM_BUILD_ROOT%{_iconsdir}/hicolor/scalable/apps/meld.svg
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 %scrollkeeper_update_post
 %update_desktop_database_post
+%update_icon_cache hicolor
 
 %postun
 %scrollkeeper_update_postun
 %update_desktop_database_postun
+%update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -102,6 +98,6 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/%{name}/*.py[co]
 %{py_sitedir}/%{name}/%{name}
 %{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}.svg
 %{_datadir}/%{name}
 %{_desktopdir}/%{name}.desktop
-%{_pixmapsdir}/%{name}.png
