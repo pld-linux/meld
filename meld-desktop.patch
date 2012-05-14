@@ -1,11 +1,11 @@
-diff -Nur meld-1.2.1.orig/meld.desktop.in meld-1.2.1.desktop/meld.desktop.in
---- meld-1.2.1.orig/data/meld.desktop.in	2008-11-15 03:39:56.000000000 -0700
-+++ meld-1.2.1.desktop/data/meld.desktop.in	2008-11-23 14:13:02.000000000 -0700
-@@ -7,7 +7,8 @@
+diff -uNr meld-1.6.0.old/data/meld.desktop.in meld-1.6.0/data/meld.desktop.in
+--- meld-1.6.0.old/data/meld.desktop.in	2012-04-27 23:09:24.000000000 +0200
++++ meld-1.6.0/data/meld.desktop.in	2012-05-14 13:50:15.306381836 +0200
+@@ -9,7 +9,8 @@
  Type=Application
  Icon=meld
  StartupNotify=true
--Categories=GNOME;Application;Development;
+-Categories=GTK;Development;
 +Categories=GTK;GNOME;Development;
 +MimeType=text/x-patch;
  X-GNOME-Bugzilla-Bugzilla=GNOME

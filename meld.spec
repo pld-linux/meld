@@ -4,12 +4,12 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	1.5.1
+Version:	1.6.0
 Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	387f24c936e2a433ac3dedd298008675
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.6/%{name}-%{version}.tar.xz
+# Source0-md5:	c68b78586426d74a939d7f69eb88051e
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-GNUmakefile.patch
 Patch2:		%{name}-glob.patch
@@ -21,6 +21,8 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	scrollkeeper
@@ -92,7 +94,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS
 %attr(755,root,root) %{_bindir}/%{name}
 %dir %{py_sitedir}/%{name}
 %{py_sitedir}/%{name}/*.py[co]
