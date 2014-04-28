@@ -1,18 +1,18 @@
-# TODO: make pl translation, commit it to gnome repository
-#       and attach pl.patch here ;)
+# TODO:
+# - make pl translation, commit it to gnome repository and attach pl.patch here ;)
 #
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	1.6.1
+Version:	1.8.4
 Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	50592969a05a6043439d30b0b52b66a7
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.8/%{name}-%{version}.tar.xz
+# Source0-md5:	d9e5038487ae0b8694191370fcc87fb8
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-GNUmakefile.patch
-Patch2:		%{name}-glob.patch
+Patch2:		%{name}-version_control_plugins_glob.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	gettext-devel
 BuildRequires:	intltool
@@ -100,5 +100,11 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/%{name}/%{name}
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.svg
+%{_iconsdir}/HighContrast/scalable/apps/meld.svg
 %{_datadir}/%{name}
+%{_datadir}/appdata/meld.appdata.xml
+%{_datadir}/mime/packages/meld.xml
 %{_desktopdir}/%{name}.desktop
+
+
+
