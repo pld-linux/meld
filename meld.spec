@@ -4,28 +4,26 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	1.8.6
+Version:	3.12.0
 Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	872e6c28a7913f1eab1cacf27d6d1e5a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.12/%{name}-%{version}.tar.xz
+# Source0-md5:	9dbdb3306dc5d2415baeae3892bcec8e
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-GNUmakefile.patch
-Patch2:		%{name}-version_control_plugins_glob.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	gettext-devel
 BuildRequires:	intltool
+BuildRequires:	itstool
 BuildRequires:	python-modules >= 2.5
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.197
-BuildRequires:	scrollkeeper
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	scrollkeeper
 Requires:	hicolor-icon-theme
 Requires:	python-pygobject >= 2.16
 Requires:	python-pygtk-gtk >= 2.14
@@ -54,28 +52,23 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
-%{__make} \
-	prefix=%{_prefix} \
-	libdir=%{py_sitedir}
+%{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	prefix=%{_prefix} \
-	libdir=%{py_sitedir}
-
-touch $RPM_BUILD_ROOT%{py_sitedir}/meld/__init__.py
-
-%py_comp $RPM_BUILD_ROOT%{py_sitedir}
-%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
+%{__python} setup.py \
+	--no-compile-schemas \
+	--no-update-icon-cache \
+	install \
+        --optimize=2 \
+        --root=$RPM_BUILD_ROOT
 
 %py_postclean
+
+%{__rm} -r $RPM_BUILD_ROOT/usr/share/doc/%{name}-%{version}
 
 %find_lang %{name} --with-gnome --with-omf
 
@@ -83,28 +76,36 @@ touch $RPM_BUILD_ROOT%{py_sitedir}/meld/__init__.py
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%scrollkeeper_update_post
+%glib_compile_schemas
 %update_desktop_database_post
 %update_icon_cache hicolor
 
 %postun
-%scrollkeeper_update_postun
 %update_desktop_database_postun
 %update_icon_cache hicolor
+%glib_compile_schemas
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%doc NEWS README
 %attr(755,root,root) %{_bindir}/%{name}
-%dir %{py_sitedir}/%{name}
-%{py_sitedir}/%{name}/*.py[co]
-%{py_sitedir}/%{name}/%{name}
+%dir %{py_sitescriptdir}/meld-*.egg-info
+%dir %{py_sitescriptdir}/%{name}
+%{py_sitescriptdir}/%{name}/*.py[co]
+%dir %{py_sitescriptdir}/%{name}/ui
+%{py_sitescriptdir}/%{name}/ui/*.py[co]
+%dir %{py_sitescriptdir}/%{name}/util
+%{py_sitescriptdir}/%{name}/util/*.py[co]
+%dir %{py_sitescriptdir}/%{name}/vc
+%{py_sitescriptdir}/%{name}/vc/*.py[co]
+%{_iconsdir}/hicolor/*/actions/*.png
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.svg
+%{_iconsdir}/hicolor/*/apps/meld-version-control.png
 %{_iconsdir}/HighContrast/scalable/apps/meld.svg
 %{_datadir}/%{name}
 %{_datadir}/appdata/meld.appdata.xml
+%{_datadir}/glib-2.0/schemas/org.gnome.meld.gschema.xml
 %{_datadir}/mime/packages/meld.xml
 %{_desktopdir}/%{name}.desktop
-
-
-
+%{_mandir}/man1/%{name}.1*
