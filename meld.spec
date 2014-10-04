@@ -30,6 +30,7 @@ Requires:	python-pygtk-gtk >= 2.14
 Suggests:	python-gtksourceview2 >= 2.4
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -59,6 +60,7 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %install
 rm -rf $RPM_BUILD_ROOT
 
+# NOTE: --skip-build breaks install
 %{__python} setup.py \
 	--no-compile-schemas \
 	--no-update-icon-cache \
