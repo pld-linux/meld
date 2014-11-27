@@ -12,10 +12,9 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.12/%{name}-%{version}.tar
 # Source0-md5:	a11c4abf923d136e410fa9e8217c0bba
 Patch0:		%{name}-desktop.patch
 URL:		http://meld.sourceforge.net/
-BuildRequires:	gettext-devel
 BuildRequires:	intltool
 BuildRequires:	itstool
-BuildRequires:	python-modules >= 2.5
+BuildRequires:	python-modules >= 2.7
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.197
@@ -24,14 +23,13 @@ BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
+Requires:	glib2 >= 1:2.34
+Requires:	gtk+3 >= 3.6
+Requires:	gtksourceview3 >= 3.6
 Requires:	hicolor-icon-theme
-Requires:	python-pygobject >= 2.16
-Requires:	python-pygtk-gtk >= 2.14
-# Without  gtksourceview3 >= 3.14 meld fails:
-# Cannot import: GtkSourceView
-# cannot import name GtkSource
-Requires:       gtksourceview3 >= 3.14
-Suggests:	python-gtksourceview2 >= 2.4
+Requires:	pango >= 1:1.26
+Requires:	python-modules >= 2.7
+Requires:	python-pygobject3 >= 3.8
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildArch:	noarch
