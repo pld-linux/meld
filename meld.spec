@@ -5,7 +5,7 @@ Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
 Version:	3.12.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Text
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.12/%{name}-%{version}.tar.xz
@@ -27,6 +27,10 @@ Requires(post,postun):	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	python-pygobject >= 2.16
 Requires:	python-pygtk-gtk >= 2.14
+# Without  gtksourceview3 >= 3.14 meld fails:
+# Cannot import: GtkSourceView
+# cannot import name GtkSource
+Requires:       gtksourceview3 >= 3.14
 Suggests:	python-gtksourceview2 >= 2.4
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
