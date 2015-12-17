@@ -5,7 +5,7 @@ Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
 Version:	3.15.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Text
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.15/%{name}-%{version}.tar.xz
@@ -17,7 +17,7 @@ BuildRequires:	itstool
 BuildRequires:	python-modules >= 2.7
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
-BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
@@ -58,18 +58,13 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %patch0 -p1
 
 %build
-%{__python} setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 # NOTE: --skip-build breaks install
-%{__python} setup.py \
-	--no-compile-schemas \
-	--no-update-icon-cache \
-	install \
-        --optimize=2 \
-        --root=$RPM_BUILD_ROOT
+%py_install
 
 %py_postclean
 
