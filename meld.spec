@@ -58,13 +58,20 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %patch0 -p1
 
 %build
-%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-# NOTE: --skip-build breaks install
-%py_install
+%{__python} setup.py \
+	--no-compile-schemas \
+	--no-update-icon-cache \
+	build --build-base=build-2 \
+	install --skip-build \
+	--prefix=%{_prefix} \
+	--install-purelib=%{py_sitescriptdir} \
+	--install-platlib=%{py_sitedir} \
+	--optimize=2 \
+	--root=$RPM_BUILD_ROOT
 
 %py_postclean
 
