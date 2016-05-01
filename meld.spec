@@ -1,15 +1,12 @@
-# TODO:
-# - make pl translation, commit it to gnome repository and attach pl.patch here ;)
-#
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	3.15.1
-Release:	2
+Version:	3.16.0
+Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.15/%{name}-%{version}.tar.xz
-# Source0-md5:	238c3eba59290d5128675c88c1849e05
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.16/%{name}-%{version}.tar.xz
+# Source0-md5:	ed12ede512f1be0dcfb8876b55d019db
 Patch0:		%{name}-desktop.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	intltool
