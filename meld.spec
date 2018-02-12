@@ -1,17 +1,18 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	3.16.4
+Version:	3.18.0
 Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.16/%{name}-%{version}.tar.xz
-# Source0-md5:	f1dc544cc46ead1369bb424759bd2c05
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.18/%{name}-%{version}.tar.xz
+# Source0-md5:	c612b437e1dc74a7d5c5f9bee0f7b4dd
 Patch0:		%{name}-desktop.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	intltool
 BuildRequires:	itstool
-BuildRequires:	python-modules >= 2.7
+BuildRequires:	python3-modules >= 3.3
+BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.710
@@ -20,14 +21,14 @@ BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
-Requires:	glib2 >= 1:2.34
-Requires:	gtk+3 >= 3.6
-Requires:	gtksourceview3 >= 3.6
+Requires:	glib2 >= 1:2.36
+Requires:	gtk+3 >= 3.14
+Requires:	gtksourceview3 >= 3.14
 Requires:	hicolor-icon-theme
 Requires:	pango >= 1:1.26
-Requires:	python-modules >= 2.7
-Requires:	python-pycairo
-Requires:	python-pygobject3 >= 3.8
+Requires:	python3-modules >= 3.3
+Requires:	python3-pycairo
+Requires:	python3-pygobject3 >= 3.14
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildArch:	noarch
@@ -59,18 +60,16 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__python} setup.py \
+%{__python3} setup.py \
 	--no-compile-schemas \
 	--no-update-icon-cache \
-	build --build-base=build-2 \
+	build --build-base=build-3 \
 	install --skip-build \
 	--prefix=%{_prefix} \
-	--install-purelib=%{py_sitescriptdir} \
-	--install-platlib=%{py_sitedir} \
+	--install-purelib=%{py3_sitescriptdir} \
+	--install-platlib=%{py3_sitedir} \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
-
-%py_postclean
 
 %{__rm} -r $RPM_BUILD_ROOT/usr/share/doc/%{name}-%{version}
 
@@ -93,15 +92,19 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc NEWS README
 %attr(755,root,root) %{_bindir}/%{name}
-%dir %{py_sitescriptdir}/meld-*.egg-info
-%dir %{py_sitescriptdir}/%{name}
-%{py_sitescriptdir}/%{name}/*.py[co]
-%dir %{py_sitescriptdir}/%{name}/ui
-%{py_sitescriptdir}/%{name}/ui/*.py[co]
-%dir %{py_sitescriptdir}/%{name}/util
-%{py_sitescriptdir}/%{name}/util/*.py[co]
-%dir %{py_sitescriptdir}/%{name}/vc
-%{py_sitescriptdir}/%{name}/vc/*.py[co]
+%dir %{py3_sitescriptdir}/meld-*.egg-info
+%dir %{py3_sitescriptdir}/%{name}
+%{py3_sitescriptdir}/%{name}/*.py
+%{py3_sitescriptdir}/%{name}/__pycache__
+%dir %{py3_sitescriptdir}/%{name}/matchers
+%{py3_sitescriptdir}/%{name}/matchers/*.py
+%{py3_sitescriptdir}/%{name}/matchers/__pycache__
+%dir %{py3_sitescriptdir}/%{name}/ui
+%{py3_sitescriptdir}/%{name}/ui/*.py
+%{py3_sitescriptdir}/%{name}/ui/__pycache__
+%dir %{py3_sitescriptdir}/%{name}/vc
+%{py3_sitescriptdir}/%{name}/vc/*.py
+%{py3_sitescriptdir}/%{name}/vc/__pycache__
 %{_iconsdir}/hicolor/*/actions/*.png
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.svg
