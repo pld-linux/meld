@@ -1,12 +1,12 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	3.18.3
+Version:	3.20.0
 Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.18/%{name}-%{version}.tar.xz
-# Source0-md5:	81ab217622f856ee014f6b6c47a198f2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.20/%{name}-%{version}.tar.xz
+# Source0-md5:	5b856d5690477c578b0b768c60b162ca
 Patch0:		%{name}-desktop.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	intltool
@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc NEWS README
+%doc NEWS
 %attr(755,root,root) %{_bindir}/%{name}
 %dir %{py3_sitescriptdir}/meld-*.egg-info
 %dir %{py3_sitescriptdir}/%{name}
@@ -106,13 +106,13 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitescriptdir}/%{name}/vc/*.py
 %{py3_sitescriptdir}/%{name}/vc/__pycache__
 %{_iconsdir}/hicolor/*/actions/*.png
-%{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_iconsdir}/hicolor/*/apps/org.gnome.meld.png
 %{_iconsdir}/hicolor/*/apps/*.svg
 %{_iconsdir}/hicolor/*/apps/meld-version-control.png
-%{_iconsdir}/HighContrast/scalable/apps/meld.svg
+%{_iconsdir}/HighContrast/scalable/apps/org.gnome.meld.svg
 %{_datadir}/%{name}
-%{_datadir}/appdata/meld.appdata.xml
+%{_datadir}/metainfo/org.gnome.meld.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.meld.gschema.xml
-%{_datadir}/mime/packages/meld.xml
-%{_desktopdir}/%{name}.desktop
+%{_datadir}/mime/packages/org.gnome.meld.xml
+%{_desktopdir}/org.gnome.meld.desktop
 %{_mandir}/man1/%{name}.1*

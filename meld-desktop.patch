@@ -1,13 +1,12 @@
-diff -uNr meld-1.6.0.old/data/meld.desktop.in meld-1.6.0/data/meld.desktop.in
---- meld-1.6.0.old/data/meld.desktop.in	2012-04-27 23:09:24.000000000 +0200
-+++ meld-1.6.0/data/meld.desktop.in	2012-05-14 13:50:15.306381836 +0200
-@@ -9,7 +9,8 @@
+diff -urN meld-3.20.0.orig/data/org.gnome.meld.desktop.in meld-3.20.0/data/org.gnome.meld.desktop.in
+--- meld-3.20.0.orig/data/org.gnome.meld.desktop.in	2019-01-20 22:21:14.767559143 +0100
++++ meld-3.20.0/data/org.gnome.meld.desktop.in	2019-01-20 22:21:50.094006006 +0100
+@@ -9,6 +9,6 @@
+ Terminal=false
  Type=Application
- Icon=meld
+ Icon=org.gnome.meld
+-MimeType=application/x-meld-comparison;
++MimeType=application/x-meld-comparison;text/x-patch;
  StartupNotify=true
 -Categories=GTK;Development;
 +Categories=GTK;GNOME;Development;
-+MimeType=text/x-patch;
- X-GNOME-Bugzilla-Bugzilla=GNOME
- X-GNOME-Bugzilla-Product=meld
- X-GNOME-Bugzilla-Component=general
