@@ -1,12 +1,12 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	3.20.0
+Version:	3.20.1
 Release:	1
 License:	GPL
 Group:		Applications/Text
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	5b856d5690477c578b0b768c60b162ca
+# Source0-md5:	0a2419d75fc8f8677fa6b4ce31ca8adc
 Patch0:		%{name}-desktop.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	intltool
