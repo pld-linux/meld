@@ -11,7 +11,7 @@ Patch0:		%{name}-desktop.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	intltool
 BuildRequires:	itstool
-BuildRequires:	python3-modules >= 3.3
+BuildRequires:	python3-modules >= 1:3.3
 BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
@@ -26,7 +26,7 @@ Requires:	gtk+3 >= 3.14
 Requires:	gtksourceview3 >= 3.14
 Requires:	hicolor-icon-theme
 Requires:	pango >= 1:1.26
-Requires:	python3-modules >= 3.3
+Requires:	python3-modules >= 1:3.3
 Requires:	python3-pycairo
 Requires:	python3-pygobject3 >= 3.14
 # sr@Latn vs. sr@latin
