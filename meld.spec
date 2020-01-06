@@ -2,36 +2,35 @@ Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
 Version:	3.20.1
-Release:	3
-License:	GPL
+Release:	4
+License:	GPL v2+
 Group:		Applications/Text
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.20/%{name}-%{version}.tar.xz
 # Source0-md5:	0a2419d75fc8f8677fa6b4ce31ca8adc
 Patch0:		%{name}-desktop.patch
 Patch1:		python3.8.patch
+Patch2:		%{name}-install.patch
 URL:		http://meld.sourceforge.net/
 BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	python3-modules >= 1:3.3
-BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
-BuildRequires:	rpmbuild(macros) >= 1.710
+BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+# for versions see bin/meld /check_requirements
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.48
 Requires(post,postun):	gtk-update-icon-cache
-Requires:	glib2 >= 1:2.36
-Requires:	gtk+3 >= 3.14
-Requires:	gtksourceview3 >= 3.14
+Requires:	glib2 >= 1:2.48
+Requires:	gtk+3 >= 3.20
+Requires:	gtksourceview3 >= 3.20.0
 Requires:	hicolor-icon-theme
 Requires:	pango >= 1:1.26
 Requires:	python3-modules >= 1:3.3
 Requires:	python3-pycairo
 Requires:	python3-pygobject3 >= 3.14
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,26 +55,24 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
+cp -p meld/vc/COPYING COPYING.vc
+cp -p meld/vc/README README.vc
 
 %build
+%py3_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__python3} setup.py \
+%py3_install install_data \
 	--no-compile-schemas \
-	--no-update-icon-cache \
-	build --build-base=build-3 \
-	install --skip-build \
-	--prefix=%{_prefix} \
-	--install-purelib=%{py3_sitescriptdir} \
-	--install-platlib=%{py3_sitedir} \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+	--no-update-icon-cache
 
-%{__rm} -r $RPM_BUILD_ROOT/usr/share/doc/%{name}-%{version}
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
-%find_lang %{name} --with-gnome --with-omf
+%find_lang %{name} --with-gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -92,9 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc NEWS
-%attr(755,root,root) %{_bindir}/%{name}
-%dir %{py3_sitescriptdir}/meld-*.egg-info
+%doc NEWS COPYING.vc README.vc
+%attr(755,root,root) %{_bindir}/meld
+%dir %{py3_sitescriptdir}/meld-%{version}-py*.egg-info
 %dir %{py3_sitescriptdir}/%{name}
 %{py3_sitescriptdir}/%{name}/*.py
 %{py3_sitescriptdir}/%{name}/__pycache__
@@ -107,14 +104,14 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitescriptdir}/%{name}/vc
 %{py3_sitescriptdir}/%{name}/vc/*.py
 %{py3_sitescriptdir}/%{name}/vc/__pycache__
-%{_iconsdir}/hicolor/*/actions/*.png
-%{_iconsdir}/hicolor/*/apps/org.gnome.meld.png
-%{_iconsdir}/hicolor/*/apps/*.svg
-%{_iconsdir}/hicolor/*/apps/meld-version-control.png
+%{_iconsdir}/hicolor/16x16/actions/meld-change-*.png
+%{_iconsdir}/hicolor/*x*/apps/meld-version-control.png
+%{_iconsdir}/hicolor/*x*/apps/org.gnome.meld.png
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.meld.svg
 %{_iconsdir}/HighContrast/scalable/apps/org.gnome.meld.svg
 %{_datadir}/%{name}
-%{_datadir}/metainfo/org.gnome.meld.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.meld.gschema.xml
+%{_datadir}/metainfo/org.gnome.meld.appdata.xml
 %{_datadir}/mime/packages/org.gnome.meld.xml
 %{_desktopdir}/org.gnome.meld.desktop
-%{_mandir}/man1/%{name}.1*
+%{_mandir}/man1/meld.1*
