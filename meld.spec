@@ -5,7 +5,7 @@ Version:	3.20.3
 Release:	1
 License:	GPL v2+
 Group:		Applications/Text
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/meld/3.20/%{name}-%{version}.tar.xz
+Source0:	https://download.gnome.org/sources/meld/3.20/%{name}-%{version}.tar.xz
 # Source0-md5:	28bd16508e9c966d04184c16046cbadb
 Patch0:		%{name}-desktop.patch
 Patch2:		%{name}-install.patch
