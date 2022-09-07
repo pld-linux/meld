@@ -13,7 +13,7 @@ Patch2:		%{name}-install.patch
 URL:		http://meldmerge.org/
 BuildRequires:	intltool
 BuildRequires:	itstool
-BuildRequires:	python3-modules >= 1:3.3
+BuildRequires:	python3-modules >= 1:3.6
 # ensure distutils.command.build.{Build -> build} rename (see distutils patch)
 BuildRequires:	python3-setuptools >= 1:60
 BuildRequires:	rpm-pythonprov
@@ -27,12 +27,12 @@ Requires(post,postun):	glib2 >= 1:2.48
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	glib2 >= 1:2.48
 Requires:	gtk+3 >= 3.20
-Requires:	gtksourceview3 >= 3.20.0
+Requires:	gtksourceview4 >= 4.0.0
 Requires:	hicolor-icon-theme
 Requires:	pango >= 1:1.26
-Requires:	python3-modules >= 1:3.3
-Requires:	python3-pycairo
-Requires:	python3-pygobject3 >= 3.14
+Requires:	python3-modules >= 1:3.6
+Requires:	python3-pycairo >= 1.15.0
+Requires:	python3-pygobject3 >= 3.30
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
