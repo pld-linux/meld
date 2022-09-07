@@ -1,10 +1,9 @@
-diff -urN meld-3.20.0.orig/data/org.gnome.meld.desktop.in meld-3.20.0/data/org.gnome.meld.desktop.in
---- meld-3.20.0.orig/data/org.gnome.meld.desktop.in	2019-01-20 22:21:14.767559143 +0100
-+++ meld-3.20.0/data/org.gnome.meld.desktop.in	2019-01-20 22:21:50.094006006 +0100
-@@ -9,6 +9,6 @@
- Terminal=false
+--- meld-3.22.0/data/org.gnome.meld.desktop.in.in.orig	2022-09-04 06:26:14.000000000 +0200
++++ meld-3.22.0/data/org.gnome.meld.desktop.in.in	2022-09-06 16:40:05.629916772 +0200
+@@ -9,6 +9,6 @@ Terminal=false
  Type=Application
- Icon=org.gnome.meld
+ # TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
+ Icon=@icon@
 -MimeType=application/x-meld-comparison;
 +MimeType=application/x-meld-comparison;text/x-patch;
  StartupNotify=true

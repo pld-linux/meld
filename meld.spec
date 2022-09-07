@@ -1,18 +1,21 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	3.20.4
-Release:	3
+Version:	3.22.0
+Release:	1
 License:	GPL v2+
 Group:		Applications/Text
-Source0:	https://download.gnome.org/sources/meld/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	318b98861d546526fc122dea9dc90257
+Source0:	https://download.gnome.org/sources/meld/3.22/%{name}-%{version}.tar.xz
+# Source0-md5:	c32fa8675137e0d0c7334c4fc2de6114
 Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-distutils.patch
 Patch2:		%{name}-install.patch
-URL:		http://meld.sourceforge.net/
+URL:		http://meldmerge.org/
 BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	python3-modules >= 1:3.3
+# ensure distutils.command.build.{Build -> build} rename (see distutils patch)
+BuildRequires:	python3-setuptools >= 1:60
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.714
@@ -53,6 +56,7 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 %patch2 -p1
 
 cp -p meld/vc/COPYING COPYING.vc
@@ -68,7 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 	--no-compile-schemas \
 	--no-update-icon-cache
 
+# packaged as %doc
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{name}/vc/{COPYING,README}
 
 %find_lang %{name} --with-gnome
 
@@ -102,11 +108,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitescriptdir}/%{name}/vc
 %{py3_sitescriptdir}/%{name}/vc/*.py
 %{py3_sitescriptdir}/%{name}/vc/__pycache__
-%{_iconsdir}/hicolor/16x16/actions/meld-change-*.png
-%{_iconsdir}/hicolor/*x*/apps/meld-version-control.png
-%{_iconsdir}/hicolor/*x*/apps/org.gnome.meld.png
-%{_iconsdir}/hicolor/scalable/apps/org.gnome.meld.svg
-%{_iconsdir}/HighContrast/scalable/apps/org.gnome.meld.svg
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Meld.svg
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.MeldDevel.svg
+%{_iconsdir}/hicolor/symbolic/apps/org.gnome.Meld-symbolic.svg
 %{_datadir}/%{name}
 %{_datadir}/glib-2.0/schemas/org.gnome.meld.gschema.xml
 %{_datadir}/metainfo/org.gnome.meld.appdata.xml
