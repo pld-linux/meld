@@ -11,14 +11,21 @@ Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-distutils.patch
 Patch2:		%{name}-install.patch
 URL:		http://meldmerge.org/
+BuildRequires:	gtk+3-devel >= 3.20
+BuildRequires:	gtksourceview4-devel >= 4.0.0
 BuildRequires:	intltool
 BuildRequires:	itstool
+BuildRequires:	meson >= 0.49.0
+BuildRequires:	ninja
+BuildRequires:	python3-devel >= 1:3.6
 BuildRequires:	python3-modules >= 1:3.6
+BuildRequires:	python3-pycairo-devel >= 1.15.0
+BuildRequires:	python3-pygobject3-devel >= 3.30
 # ensure distutils.command.build.{Build -> build} rename (see distutils patch)
 BuildRequires:	python3-setuptools >= 1:60
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
-BuildRequires:	rpmbuild(macros) >= 1.714
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 # for versions see bin/meld /check_requirements
@@ -63,17 +70,17 @@ cp -p meld/vc/COPYING COPYING.vc
 cp -p meld/vc/README README.vc
 
 %build
-%py3_build
+%meson build
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%py3_install install_data \
-	--no-compile-schemas \
-	--no-update-icon-cache
+%ninja_install -C build
+
+%py3_comp $RPM_BUILD_ROOT%{py3_sitescriptdir}
 
 # packaged as %doc
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{name}/vc/{COPYING,README}
 
 %find_lang %{name} --with-gnome
@@ -95,7 +102,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc NEWS COPYING.vc README.vc
 %attr(755,root,root) %{_bindir}/meld
-%{py3_sitescriptdir}/meld-%{version}-py*.egg-info
 %dir %{py3_sitescriptdir}/%{name}
 %{py3_sitescriptdir}/%{name}/*.py
 %{py3_sitescriptdir}/%{name}/__pycache__
@@ -109,11 +115,10 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitescriptdir}/%{name}/vc/*.py
 %{py3_sitescriptdir}/%{name}/vc/__pycache__
 %{_iconsdir}/hicolor/scalable/apps/org.gnome.Meld.svg
-%{_iconsdir}/hicolor/scalable/apps/org.gnome.MeldDevel.svg
 %{_iconsdir}/hicolor/symbolic/apps/org.gnome.Meld-symbolic.svg
 %{_datadir}/%{name}
 %{_datadir}/glib-2.0/schemas/org.gnome.meld.gschema.xml
-%{_datadir}/metainfo/org.gnome.meld.appdata.xml
-%{_datadir}/mime/packages/org.gnome.meld.xml
-%{_desktopdir}/org.gnome.meld.desktop
+%{_datadir}/metainfo/org.gnome.Meld.appdata.xml
+%{_datadir}/mime/packages/org.gnome.Meld.xml
+%{_desktopdir}/org.gnome.Meld.desktop
 %{_mandir}/man1/meld.1*
