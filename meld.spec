@@ -1,16 +1,16 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	3.22.0
+Version:	3.22.1
 Release:	1
 License:	GPL v2+
 Group:		Applications/Text
 Source0:	https://download.gnome.org/sources/meld/3.22/%{name}-%{version}.tar.xz
-# Source0-md5:	c32fa8675137e0d0c7334c4fc2de6114
+# Source0-md5:	5cc5f940994aafbcc7413e5c88424ced
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-distutils.patch
 Patch2:		%{name}-install.patch
 URL:		http://meldmerge.org/
+BuildRequires:	glib2-devel >= 1:2.48
 BuildRequires:	gtk+3-devel >= 3.20
 BuildRequires:	gtksourceview4-devel >= 4.0.0
 BuildRequires:	intltool
@@ -63,7 +63,6 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 
 cp -p meld/vc/COPYING COPYING.vc
@@ -71,6 +70,7 @@ cp -p meld/vc/README README.vc
 
 %build
 %meson build
+
 %ninja_build -C build
 
 %install
