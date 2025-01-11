@@ -10,6 +10,7 @@ Source0:	https://download.gnome.org/sources/meld/3.22/%{name}-%{version}.tar.xz
 Patch0:		%{name}-desktop.patch
 Patch2:		%{name}-install.patch
 URL:		http://meldmerge.org/
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.48
 BuildRequires:	gtk+3-devel >= 3.20
 BuildRequires:	gtksourceview4-devel >= 4.0.0
@@ -17,6 +18,7 @@ BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	meson >= 0.49.0
 BuildRequires:	ninja
+BuildRequires:	pkgconfig
 BuildRequires:	python3-devel >= 1:3.6
 BuildRequires:	python3-modules >= 1:3.6
 BuildRequires:	python3-pycairo-devel >= 1.15.0
