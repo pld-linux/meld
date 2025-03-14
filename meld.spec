@@ -27,7 +27,7 @@ BuildRequires:	python3-pygobject3-devel >= 3.30
 BuildRequires:	python3-setuptools >= 1:60
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 # for versions see bin/meld /check_requirements
@@ -71,14 +71,14 @@ cp -p meld/vc/COPYING COPYING.vc
 cp -p meld/vc/README README.vc
 
 %build
-%meson build
+%meson
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %py3_comp $RPM_BUILD_ROOT%{py3_sitescriptdir}
 
