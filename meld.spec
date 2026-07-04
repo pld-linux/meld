@@ -1,23 +1,22 @@
 Summary:	Visual diff and merge tool
 Summary(pl.UTF-8):	Wizualne narzędzie do oglądania i włączania zmian (diff)
 Name:		meld
-Version:	3.22.3
-Release:	4
+Version:	3.24.0
+Release:	1
 License:	GPL v2+
 Group:		Applications/Text
-Source0:	https://download.gnome.org/sources/meld/3.22/%{name}-%{version}.tar.xz
-# Source0-md5:	8dc9da40caa2a0fd1097af77d3b87abd
+Source0:	https://download.gnome.org/sources/meld/3.24/%{name}-%{version}.tar.xz
+# Source0-md5:	44d22390fef09f1f81c36fa86c78d7c3
 Patch0:		%{name}-desktop.patch
-Patch2:		%{name}-install.patch
 URL:		http://meldmerge.org/
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.48
-BuildRequires:	gtk+3-devel >= 3.20
+BuildRequires:	gtk+3-devel >= 3.22
 BuildRequires:	gtksourceview4-devel >= 4.0.0
 BuildRequires:	intltool
 BuildRequires:	itstool
-BuildRequires:	meson >= 0.49.0
-BuildRequires:	ninja
+BuildRequires:	meson >= 1.2.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3-devel >= 1:3.6
 BuildRequires:	python3-modules >= 1:3.6
@@ -35,7 +34,7 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	glib2 >= 1:2.48
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	glib2 >= 1:2.48
-Requires:	gtk+3 >= 3.20
+Requires:	gtk+3 >= 3.22
 Requires:	gtksourceview4 >= 4.0.0
 Requires:	hicolor-icon-theme
 Requires:	pango >= 1:1.26
@@ -65,7 +64,6 @@ zakładkami, pozwalający na otwieranie wielu plików diff naraz.
 %prep
 %setup -q
 %patch -P 0 -p1
-%patch -P 2 -p1
 
 cp -p meld/vc/COPYING COPYING.vc
 cp -p meld/vc/README README.vc
@@ -102,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc NEWS COPYING.vc README.vc
+%doc NEWS COPYING.vc README.md README.vc
 %attr(755,root,root) %{_bindir}/meld
 %dir %{py3_sitescriptdir}/%{name}
 %{py3_sitescriptdir}/%{name}/*.py
@@ -116,11 +114,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitescriptdir}/%{name}/vc
 %{py3_sitescriptdir}/%{name}/vc/*.py
 %{py3_sitescriptdir}/%{name}/vc/__pycache__
-%{_iconsdir}/hicolor/scalable/apps/org.gnome.Meld.svg
-%{_iconsdir}/hicolor/symbolic/apps/org.gnome.Meld-symbolic.svg
 %{_datadir}/%{name}
-%{_datadir}/glib-2.0/schemas/org.gnome.meld.gschema.xml
-%{_datadir}/metainfo/org.gnome.Meld.appdata.xml
+%{_datadir}/glib-2.0/schemas/org.gnome.Meld.gschema.xml
+%{_datadir}/metainfo/org.gnome.Meld.metainfo.xml
 %{_datadir}/mime/packages/org.gnome.Meld.xml
 %{_desktopdir}/org.gnome.Meld.desktop
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Meld.svg
+%{_iconsdir}/hicolor/symbolic/apps/org.gnome.Meld-symbolic.svg
 %{_mandir}/man1/meld.1*

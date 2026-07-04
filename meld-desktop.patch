@@ -1,5 +1,5 @@
---- meld-3.22.0/data/org.gnome.meld.desktop.in.in.orig	2022-09-04 06:26:14.000000000 +0200
-+++ meld-3.22.0/data/org.gnome.meld.desktop.in.in	2022-09-06 16:40:05.629916772 +0200
+--- meld-3.24.0/data/org.gnome.Meld.desktop.in.in.orig	2026-07-04 19:31:45.347039418 +0200
++++ meld-3.24.0/data/org.gnome.Meld.desktop.in.in	2026-07-04 19:32:05.630262867 +0200
 @@ -9,6 +9,6 @@ Terminal=false
  Type=Application
  # TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
